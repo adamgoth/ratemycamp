@@ -1,0 +1,10 @@
+<div class="container center">
+
+	<h1> Search campsites by name or nearest town </h1>
+
+	<%= form_tag campsites_path, method: :get do %>
+    <%= text_field_tag :query, params[:query], :class => "form-inline" %>
+    <%= submit_tag "Search", name: nil, :class => "btn btn-success" %>
+	<% end %>
+
+</div>
