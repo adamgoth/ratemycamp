@@ -1,0 +1,19 @@
+.navbar-brand {
+	font-weight: bold;
+}
+
+.center {
+	text-align: center;
+}
+
+.row {
+	margin-bottom: 10px;
+}
+
+.col-md-6.left {
+	text-align: left;
+}
+
+.col-md-6.right {
+	text-align: right;
+}
