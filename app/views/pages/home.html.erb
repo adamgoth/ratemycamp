@@ -1,9 +1,16 @@
 <div class="container center">
 
-	<h1> Search campsites by name or nearest town </h1>
+	<h1> Search campsites by name</h1>
 
 	<%= form_tag campsites_path, method: :get do %>
-    <%= text_field_tag :query, params[:query], :class => "form-inline" %>
+    <%= text_field_tag :namequery, params[:namequery], :class => "form-inline" %>
+    <%= submit_tag "Search", name: nil, :class => "btn btn-success" %>
+	<% end %>
+
+	<h1> Search campsites by state</h1>
+
+	<%= form_tag campsites_path, method: :get do %>
+    <%= select_tag :statequery, options_for_select(us_states), :class => "form-inline" %>
     <%= submit_tag "Search", name: nil, :class => "btn btn-success" %>
 	<% end %>
 

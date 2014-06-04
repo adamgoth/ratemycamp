@@ -1,5 +1,6 @@
 Ratemycamp::Application.routes.draw do
 
+  devise_for :users
   resources :campsites
 
   root "pages#home"

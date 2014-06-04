@@ -4,8 +4,10 @@ class CampsitesController < ApplicationController
   # GET /campsites
   # GET /campsites.json
   def index
-    if params.has_key?(:query)
-      @campsites = Campsite.search_by_sitename(params[:query]).paginate(:page => params[:page], :per_page => 30, :order => "sitename ASC")
+    if params.has_key?(:namequery)
+      @campsites = Campsite.search_by_sitename(params[:namequery]).paginate(:page => params[:page], :per_page => 30, :order => "sitename ASC")
+    elsif params.has_key?(:statequery)
+      @campsites = Campsite.search_by_state(params[:statequery]).paginate(:page => params[:page], :per_page => 30, :order => "sitename ASC")
     else
       @campsites = Campsite.paginate(:page => params[:page], :per_page => 30, :order => "sitename ASC")
     end
