@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140604020047) do
+ActiveRecord::Schema.define(version: 20140605004734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 20140604020047) do
     t.string   "phone"
     t.integer  "numberofsites"
     t.decimal  "distancefromnearesttown", precision: 7,  scale: 3
+  end
+
+  create_table "reviews", force: true do |t|
+    t.integer  "rating"
+    t.string   "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "campsite_id"
   end
 
   create_table "users", force: true do |t|

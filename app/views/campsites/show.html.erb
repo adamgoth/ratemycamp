@@ -19,6 +19,7 @@
 			<% end %>
 		</div>
 		<div class="col-md-6 right">
+			<%= link_to "Write a Review", new_campsite_review_path(@campsite, :campsite_id => @campsite.id), class: "btn btn-success" %>
 			<%= link_to_function "Return To Search Results", "history.back()", class: "btn btn-warning" %>
 		</div>
 	</div>
