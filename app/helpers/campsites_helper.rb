@@ -56,4 +56,8 @@ module CampsitesHelper
       ['Wyoming', 'WY']
     ]
 	end
+
+  def us_states_distinct
+    Campsite.uniq.pluck(:state).sort
+  end
 end

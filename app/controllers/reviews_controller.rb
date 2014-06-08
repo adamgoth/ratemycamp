@@ -14,7 +14,8 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   def new
-    @review = Review.new
+    @campsite = Campsite.find(params[:campsite_id])
+    @review = current_user.reviews.new(:campsite_id => params[:campsite_id])
   end
 
   # GET /reviews/1/edit
@@ -24,7 +25,8 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @review = Review.new(review_params)
+    @campsite = Campsite.find(params[:campsite_id])
+    @review = @campsite.reviews.build(review_params)
 
     respond_to do |format|
       if @review.save

@@ -18,7 +18,7 @@
 	<h1> Search campsites by state</h1>
 
 	<%= form_tag campsites_path, method: :get do %>
-    <%= select_tag :statequery, options_for_select(us_states), :class => "form-inline" %>
+    <%= select_tag :statequery, options_for_select(us_states_distinct), :class => "form-inline" %>
     <%= submit_tag "Search", name: nil, :class => "btn btn-success" %>
 	<% end %>
 

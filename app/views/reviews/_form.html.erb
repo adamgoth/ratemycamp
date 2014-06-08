@@ -11,13 +11,17 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :user_id %>
+
+  <%= f.hidden_field :campsite_id %>
+
   <div class="field">
     <%= f.label :rating, "Overall Rating" %><br>
     <%= select_tag :rating, options_for_select(1..5) %>
   </div>
   <div class="field">
     <%= f.label :comments %><br>
-    <%= f.text_field :comments %>
+    <%= f.text_area :comments, cols: 100, rows: 8 %>
   </div><br>
   <div class="actions">
     <%= submit_tag "Submit Review", name: nil, :class => "btn btn-success" %>

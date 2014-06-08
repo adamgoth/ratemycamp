@@ -12,6 +12,8 @@
         <th>Campsite</th>
         <th>Nearest Town</th>
         <th>State</th>
+        <th># of Reviews</th>
+        <th>Average Rating</th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +22,8 @@
           <td><%= link_to campsite.sitename, campsite %></td>
           <td><%= campsite.nearesttown %></td>
           <td><%= campsite.state %></td>
+          <td></td>
+          <td></td>
           <td><%= link_to 'Edit', edit_campsite_path(campsite) %></td>
           <td><%= link_to 'Destroy', campsite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
