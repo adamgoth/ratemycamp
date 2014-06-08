@@ -28,28 +28,20 @@ class ReviewsController < ApplicationController
     @campsite = Campsite.find(params[:campsite_id])
     @review = @campsite.reviews.build(review_params)
 
-    respond_to do |format|
-      if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @review }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
+    if @review.save
+      redirect_to campsite(@review.campsite), notice: 'Review was successfully created.' 
+    else
+      render action: 'new'
     end
   end
 
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
   def update
-    respond_to do |format|
-      if @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
+    if @review.update(review_params)
+      redirect_to campsite(@review.campsite), notice: 'Review was successfully updated.'
+    else
+      render action: 'edit' 
     end
   end
 
@@ -57,10 +49,7 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1.json
   def destroy
     @review.destroy
-    respond_to do |format|
-      format.html { redirect_to reviews_url }
-      format.json { head :no_content }
-    end
+      redirect_to campsites_url
   end
 
   private
@@ -71,6 +60,6 @@ class ReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:rating, :comments)
+      params.require(:review).permit(:rating, :comments, :user_id, :campsite_id)
     end
 end

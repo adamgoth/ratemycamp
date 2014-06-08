@@ -37,3 +37,13 @@
 
 </div>
 
+<div class="container">
+	<h1> Reviews </h1>
+	<% @campsite.reviews.each do |review| %>
+		Rating: <%= review.rating %><br>
+		Comments: <%= review.comments %><br>
+		Submitted by: <%= review.user.username %><br>
+	<% end %>
+
+</div>
+
