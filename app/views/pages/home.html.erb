@@ -6,7 +6,7 @@
 
 	<% if alert %>
   		<p class="alert alert-info"><%= alert %></p>
-  	<% end %>
+  <% end %>
 
 	<h1> Search campsites by name</h1>
 
@@ -21,5 +21,35 @@
     <%= select_tag :statequery, options_for_select(us_states_distinct), :class => "form-inline" %>
     <%= submit_tag "Search", name: nil, :class => "btn btn-success" %>
 	<% end %>
+
+	<h1> Check out our most recent reviews </h1>
+	<% most_recent_reviews.each do |review| %>
+		<p><i>"<%= review.comments %>"</i></p>
+		<p><strong>Campsite:</strong> <%= link_to review.campsite.sitename, campsite_path(review.campsite.id) %></p>
+		<p><strong>Rating:</strong> <%= review.rating %> out of 5</p>
+		<p><strong>Submitted by:</strong> <%= review.user.username %></p>
+		<p><strong>Submitted on:</strong> <%= review.created_at %></p>
+		<br>
+	<% end %>
+
+	<h1> Highest rated campsites </h1>
+	<table align="center">
+    <thead>
+      <tr>
+        <th>Campsite</th>
+        <th>Average Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+		<% highest_rated_campsites.each do |campsite| %>
+			<tr>
+				<td><%= link_to campsite.sitename, campsite_path(campsite.id) %></td>
+				<td><%= campsite.average %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+
+
 
 </div>

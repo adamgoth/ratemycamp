@@ -6,4 +6,5 @@ class Review < ActiveRecord::Base
 	validates :campsite_id, :presence => true
 	validates :rating, :presence => true
 	validates :comments, :presence => true
+
 end

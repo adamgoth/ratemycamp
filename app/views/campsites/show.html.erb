@@ -1,49 +1,54 @@
-<p id="notice"><%= notice %></p>
-
 <div class="container">
-	<h1><%= @campsite.sitename %></h1>
+	<% if notice %>
+		<p class="alert alert-info"><%= notice %></p>
+	<% end %>
+
+	<% if alert %>
+  		<p class="alert alert-info"><%= alert %></p>
+  <% end %>	 
 	<div class="row">
-		<div class="col-md-6 left">			
+		<div class="col-md-6 left">
+			<h1><%= @campsite.sitename %></h1>
+			<p><strong>Average Rating:</strong> <%= number_with_precision(@campsite.reviews.average(:rating), significant: true)%></p>
+				<% @campsite.reviews.reverse.each do |review| %>
+					<br><br>
+					<p><i>"<%= review.comments %>"</i></p>
+					<p><strong>Rating:</strong> <%= review.rating %> out of 5</p>
+					<p><strong>Submitted by:</strong> <%= review.user.username %></p>
+					<p><strong>Submitted on:</strong> <%= review.created_at %></p>	
+				<% end %>
+		</div>
+		<div class="col-md-6 right">
+			<h1><%= link_to "Write a Review", new_campsite_review_path(@campsite, :campsite_id => @campsite.id), class: "btn btn-success" %>
+			<%= link_to_function "Return To Search Results", "history.back()", class: "btn btn-warning" %></h1>
+			<p><strong>Number of Reviews:</strong> <%= @campsite.reviews.count %></p>			
 			<% if @campsite.nearesttown %>
 				<% if @campsite.distancefromnearesttown %>  
-					<p>Located <%= @campsite.distancefromnearesttown %> miles from <%= @campsite.nearesttown %>, <%= @campsite.state %></p>
+					<p><strong>Located <%= @campsite.distancefromnearesttown %> miles from <%= @campsite.nearesttown %>, <%= @campsite.state %></strong></p>
 				<% else %>
-					<p> Located nearest <%= @campsite.nearesttown %>, <%= @campsite.state %></p>
+					<p><strong>Located nearest <%= @campsite.nearesttown %>, <%= @campsite.state %></strong></p>
 				<% end %>
 			<% end %>
 			<% if @campsite.numberofsites %>
-				Contains <%= @campsite.numberofsites %> campsites.
+				<p><strong>Contains <%= @campsite.numberofsites %> campsites.</strong></p>
 			<% end %>
 			<% if @campsite.phone %>
-				Phone: <%= @campsite.phone %>
+				<p><strong>Phone:</strong> <%= @campsite.phone %></p>
 			<% end %>
-		</div>
-		<div class="col-md-6 right">
-			<%= link_to "Write a Review", new_campsite_review_path(@campsite, :campsite_id => @campsite.id), class: "btn btn-success" %>
-			<%= link_to_function "Return To Search Results", "history.back()", class: "btn btn-warning" %>
+			<iframe
+				width="550"
+				height="400"
+				frameborder="0" style="border:0"
+				src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCJuN7LyRB9OXNIyUlsZUCJRDSqE1jzGQs
+				&q=<%= @campsite.latitude %>, <%= @campsite.longitude %>">
+			</iframe>
 		</div>
 	</div>
-</div>
 
-<div class="container center">
+	<div class="row">
+		<div class="col-md-6 left">
 
-	<iframe
-  width="1100"
-  height="550"
-  frameborder="0" style="border:0"
-  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCJuN7LyRB9OXNIyUlsZUCJRDSqE1jzGQs
-    &q=<%= @campsite.latitude %>, <%= @campsite.longitude %>">
-</iframe>
-
-</div>
-
-<div class="container">
-	<h1> Reviews </h1>
-	<% @campsite.reviews.each do |review| %>
-		Rating: <%= review.rating %><br>
-		Comments: <%= review.comments %><br>
-		Submitted by: <%= review.user.username %><br>
-	<% end %>
-
+		</div>
+	</div>
 </div>
 

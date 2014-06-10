@@ -27,9 +27,8 @@ class ReviewsController < ApplicationController
   def create
     @campsite = Campsite.find(params[:campsite_id])
     @review = @campsite.reviews.build(review_params)
-
     if @review.save
-      redirect_to campsite(@review.campsite), notice: 'Review was successfully created.' 
+      redirect_to campsite_path(@campsite), notice: 'Review was successfully created.' , class: "alert-info"
     else
       render action: 'new'
     end
@@ -39,7 +38,7 @@ class ReviewsController < ApplicationController
   # PATCH/PUT /reviews/1.json
   def update
     if @review.update(review_params)
-      redirect_to campsite(@review.campsite), notice: 'Review was successfully updated.'
+      redirect_to campsite(@campsite), notice: 'Review was successfully updated.'
     else
       render action: 'edit' 
     end
@@ -49,7 +48,7 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1.json
   def destroy
     @review.destroy
-      redirect_to campsites_url
+      redirect_to root_path
   end
 
   private
