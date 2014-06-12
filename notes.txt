@@ -1,3 +1,5 @@
 things to do:
 
 store google maps api key
+
+fix "return to search results" from back button function to actual query results

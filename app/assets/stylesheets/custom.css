@@ -10,6 +10,14 @@
 	margin-bottom: 10px;
 }
 
+.inner{
+	background-color: #F2FFF2;
+	border: solid 3px #4cae4c;
+    border-radius: 25px;
+    padding: 0px 15px 15px 15px;
+
+}
+
 .col-md-6.left {
 	text-align: center;
 }
@@ -17,3 +25,6 @@
 .col-md-6.right {
 	text-align: center;
 }
+
+
+
