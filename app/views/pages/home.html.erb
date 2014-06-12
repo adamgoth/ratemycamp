@@ -15,20 +15,36 @@
 			    <%= text_field_tag :namequery, params[:namequery], :class => "form-inline" %>
 			    <%= submit_tag "Search", name: nil, :class => "btn btn-success" %>
 				<% end %>
-			</div>
-	  </div>
-	  <div class="col-md-6">
-	  	<div class="inner">
+
 				<h1>Search campsites by state</h1>
 				<%= form_tag campsites_path, method: :get do %>
 			    <%= select_tag :statequery, options_for_select(us_states_distinct), :class => "form-inline" %>
 			    <%= submit_tag "Search", name: nil, :class => "btn btn-success" %>
 				<% end %>
 			</div>
+			<div class="inner">
+				<h1>Highest rated campsites</h1>
+				<table align="center">
+			    <thead>
+			      <tr>
+			        <th>Campsite</th>
+			        <th>Average Rating</th>
+			        <th>Reviews</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+					<% @highest_rated_campsites.each do |campsite| %>
+						<tr>
+							<td><%= link_to campsite.sitename, campsite_path(campsite.id) %></td>
+							<td><%= campsite.average %></td>
+							<td><%= campsite.reviews.count %></td>
+						</tr>
+					<% end %>
+					</tbody>
+				</table>
+			</div>
 	  </div>
-	</div>
-	<div class="row">
-	  <div class="col-md-6">
+		<div class="col-md-6">
 	  	<div class="inner">
 		  	<h1>Recently submitted reviews</h1>
 		  	<br>
@@ -38,27 +54,6 @@
 					<br><strong>Rating:</strong> <%= review.rating %> out of 5
 					<br>Submitted by <strong><%= link_to review.user.username, review.user %></strong> on <%= review.created_at.advance(:hours => -5).strftime("%A, %B %e, %l:%m %P EST") %><br><br><br>
 				<% end %>
-			</div>
-	  </div>
-	  <div class="col-md-6">
-	  	<div class="inner">
-				<h1>Highest rated campsites</h1>
-				<table align="center">
-			    <thead>
-			      <tr>
-			        <th>Campsite</th>
-			        <th>Average Rating</th>
-			      </tr>
-			    </thead>
-			    <tbody>
-					<% @highest_rated_campsites.each do |campsite| %>
-						<tr>
-							<td><%= link_to campsite.sitename, campsite_path(campsite.id) %></td>
-							<td><%= campsite.average %></td>
-						</tr>
-					<% end %>
-					</tbody>
-				</table>
 			</div>
 		</div>
 	</div>

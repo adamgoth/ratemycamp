@@ -13,6 +13,6 @@ class PagesController < ApplicationController
 														                            GROUP BY c.id, c.sitename
 														                            )x
 														                          ORDER BY x.average DESC
-														                          LIMIT 5"
+														                          LIMIT 10"
   end
 end
