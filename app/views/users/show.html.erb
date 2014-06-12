@@ -1,0 +1,11 @@
+<div class="container center">
+	<h1><%= @user.username %></h1>
+	<p>Member since <%= @user.created_at.advance(:hours => -5).strftime("%A, %B %e, %Y") %></p>
+	<% @user.reviews.each do |review| %>
+		<br><br>
+		<p><i>"<%= review.comments %>"</i></p>
+		<strong>Campsite:</strong> <%= link_to review.campsite.sitename, campsite_path(review.campsite.id) %>
+		<br><strong>Rating:</strong> <%= review.rating %> out of 5
+		<br>Submitted on <%= review.created_at.advance(:hours => -5).strftime("%A, %B %e, %l:%m %P EST") %><br><br>
+		<% end %>
+</div>

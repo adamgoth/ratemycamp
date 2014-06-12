@@ -30,7 +30,7 @@
 				<p><i>"<%= review.comments %>"</i></p>
 				<strong>Campsite:</strong> <%= link_to review.campsite.sitename, campsite_path(review.campsite.id) %>
 				<br><strong>Rating:</strong> <%= review.rating %> out of 5
-				<br>Submitted by <strong><%= link_to review.user.username, "#" %></strong> on <%= review.created_at.advance(:hours => -5).strftime("%A, %B %e, %l:%m %P EST") %><br><br>
+				<br>Submitted by <strong><%= link_to review.user.username, review.user %></strong> on <%= review.created_at.advance(:hours => -5).strftime("%A, %B %e, %l:%m %P EST") %><br><br>
 				<br>
 			<% end %>
 	  </div>

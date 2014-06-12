@@ -40,6 +40,10 @@ gem 'will_paginate', '~> 3.0'
 
 gem 'pg_search'
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
