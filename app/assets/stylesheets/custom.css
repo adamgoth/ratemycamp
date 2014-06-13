@@ -28,7 +28,6 @@
     border-radius: 25px;
     padding: 0px 15px 20px 15px;
     margin-bottom: 20px;
-
 }
 
 .col-md-6.left {
@@ -37,6 +36,22 @@
 
 .col-md-6.right {
 	text-align: center;
+}
+
+.light-text {
+	color: #F2FFF2;
+}
+
+.user-show-reviews-scroll {
+	height:680px;
+	overflow: scroll;
+	margin-bottom: 120px;
+}
+
+.campsite-show-reviews-scroll {
+	height:350px;
+	overflow: scroll;
+	margin-bottom: 110px;
 }
 
 body {
@@ -52,4 +67,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 p, div {
     font-family: verdana;
+}
+
+table > thead > tr > th {
+	text-align: center; 
 }

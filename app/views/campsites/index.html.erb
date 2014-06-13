@@ -6,37 +6,43 @@
     <%= link_to 'Clear', campsites_path, class: "btn btn-danger" %>
   <% end %>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Campsite</th>
-        <th>Nearest Town</th>
-        <th>State</th>
-        <th># of Reviews</th>
-        <th>Average Rating</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @campsites.each do |campsite| %>
-        <tr>
-          <td><%= link_to campsite.sitename, campsite %></td>
-          <td><%= campsite.nearesttown %></td>
-          <td><%= campsite.state %></td>
-          <td><%= link_to campsite.reviews.count, campsite_path(campsite) %></td>
-          <td><strong><%= number_with_precision(campsite.reviews.average(:rating), significant: true)%></strong></td>
-          <td><%= link_to 'Edit', edit_campsite_path(campsite) %></td>
-          <td><%= link_to 'Destroy', campsite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <%= will_paginate @posts %>
-
   <br>
 
-  <%= link_to 'New Campsite', new_campsite_path %>
+  <div class="inner">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Campsite</th>
+          <th>Nearest Town</th>
+          <th>State</th>
+          <th>Reviews</th>
+          <th>Average Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @campsites.each do |campsite| %>
+          <tr>
+            <td><%= link_to campsite.sitename, campsite %></td>
+            <td><%= campsite.nearesttown %></td>
+            <td><%= campsite.state %></td>
+            <td>
+              <% if campsite.reviews.count > 0 %>
+                <%= link_to "Read #{campsite.reviews.count} Review(s)", campsite_path(campsite), class: "btn btn-success btn-xs" %>
+              <% else %>
+                <%= link_to "Be the first to review!", campsite %>
+              <% end %>
+            </td>
+            <td><strong><%= number_with_precision(campsite.reviews.average(:rating), significant: true)%></strong></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
+    <%= will_paginate @posts %>
+
+    <br>
+
+  </div>
 </div>
 
 <br>

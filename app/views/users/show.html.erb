@@ -1,11 +1,29 @@
-<div class="container center">
-	<h1><%= @user.username %></h1>
-	<p>Member since <%= @user.created_at.advance(:hours => -5).strftime("%A, %B %e, %Y") %></p>
-	<% @user.reviews.each do |review| %>
-		<br><br>
-		<p><i>"<%= review.comments %>"</i></p>
-		<strong>Campsite:</strong> <%= link_to review.campsite.sitename, campsite_path(review.campsite.id) %>
-		<br><strong>Rating:</strong> <%= review.rating %> out of 5
-		<br>Submitted on <%= review.created_at.advance(:hours => -5).strftime("%A, %B %e, %l:%m %P EST") %><br><br>
-		<% end %>
+<div class="container center" style="width: 50%;">
+	<div class="light-text">
+		<h1><%= @user.username %></h1>
+		<p><strong>Member since <%= @user.created_at.advance(:hours => -5).strftime("%A, %B %e, %Y") %></strong></p>
+		<p><strong>
+			<% if @user.reviews.count %>
+				<% if @user.reviews.count == 1 %>
+					1 review submitted
+				<% else %>
+					<%= @user.reviews.count %> reviews submitted
+				<% end %>
+			<% else %>
+				This user has not submitted any reviews
+			<% end %>
+		</strong></p>
+	</div>
+	<br>
+	<div class="user-show-reviews-scroll">
+		<% @user.reviews.each do |review| %>
+			<div class="inner">
+			<br>
+				<p><i><strong>"<%= review.comments %>"</strong></i></p>
+				Campsite: <strong><%= link_to review.campsite.sitename, campsite_path(review.campsite.id)%></strong>
+				<br>Rating: <%= review.rating %> out of 5
+				<br>Submitted by <strong><%= link_to review.user.username, review.user %></strong> on <%= review.created_at.advance(:hours => -5).strftime("%A, %B %e, %l:%m %P EST")%><br>
+			</div>
+			<% end %>
+	</div>
 </div>

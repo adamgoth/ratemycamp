@@ -1,51 +1,70 @@
 <div class="container">
 	<% if notice %>
-		<p class="alert alert-info"><%= notice %></p>
+		<p class="alert alert-success"><%= notice %></p>
 	<% end %>
 
 	<% if alert %>
-  		<p class="alert alert-info"><%= alert %></p>
-  <% end %>	 
+  		<p class="alert alert-success"><%= alert %></p>
+  	<% end %>	 
+
 	<div class="row">
 		<div class="col-md-6 left">
-			<h1><%= @campsite.sitename %></h1>
-			<% if @campsite.reviews.count > 0 %>
-			<p><strong>Average Rating:</strong> <%= number_with_precision(@campsite.reviews.average(:rating), significant: true)%>&nbsp;</p>
-			<p><strong>Reviews:</strong> <%= @campsite.reviews.count %></p>
-			<p><%= link_to "Write a Review", new_campsite_review_path(@campsite, :campsite_id => @campsite.id), class: "btn btn-success" %></p>
-				<% @campsite.reviews.reverse.each do |review| %>
-					<br><br>
-					<p><i>"<%= review.comments %>"</i></p>
-					<strong>Campsite:</strong> <%= link_to review.campsite.sitename, campsite_path(review.campsite.id) %>
-					<br><strong>Rating:</strong> <%= review.rating %> out of 5
-					<br>Submitted by <strong><%= link_to review.user.username, "#" %></strong> on <%= review.created_at.advance(:hours => -5).strftime("%A, %B %e, %l:%m %P EST") %><br><br>
-					<br>
+			<div class="inner">
+				<h1><%= @campsite.sitename %></h1>
+				<% if @campsite.reviews.count > 0 %>
+					<p><strong>Average Rating: <%= number_with_precision(@campsite.reviews.average(:rating), significant: true)%></strong></p>
+					<p><strong>Reviews: <%= @campsite.reviews.count %></strong></p>
 				<% end %>
-			<% else %>
-				<p>Have you been to <%= @campsite.sitename %>?</p>
-				<p>Help us out and be the first to tell us how it was!</p>
-				<p><%= link_to "Write a Review", new_campsite_review_path(@campsite, :campsite_id => @campsite.id), class: "btn btn-success" %></p>
-			<% end %>
-		</div>
-		<div class="col-md-6 right">
-			<h1><%= link_to_function "Return To Search Results", "history.back()", class: "btn btn-warning" %></h1>
-			<p></p>			
-			<% if @campsite.nearesttown %>
-				<% if @campsite.distancefromnearesttown %>  
-					<p><strong>Located <%= @campsite.distancefromnearesttown %> miles from <%= @campsite.nearesttown %>, <%= @campsite.state %></strong></p>
-				<% else %>
+				<% if @campsite.nearesttown %>
+					<% if @campsite.distancefromnearesttown %>  
+						<p><strong>Located <%= @campsite.distancefromnearesttown %> miles from <%= @campsite.nearesttown %>, <%= @campsite.state %></strong></p>
+					<% else %>
 					<p><strong>Located nearest <%= @campsite.nearesttown %>, <%= @campsite.state %></strong></p>
+					<% end %>
 				<% end %>
-			<% end %>
-			<% if @campsite.numberofsites %>
-				<p><strong>Contains <%= @campsite.numberofsites %> campsites.</strong></p>
-			<% end %>
-			<% if @campsite.phone %>
-				<p><strong>Phone: <%= @campsite.phone %></strong></p>
-			<% end %>
+
+				<% if @campsite.numberofsites %>
+					<p><strong>Contains <%= @campsite.numberofsites %> campsites.</strong></p>
+				<% end %>
+
+				<% if @campsite.phone %>
+					<p><strong>Phone: <%= @campsite.phone %></strong></p>
+				<% end %>
+
+				<% if @campsite.reviews.count > 0 %>
+				<p><%= link_to "Write a Review", new_campsite_review_path(@campsite, :campsite_id => @campsite.id), class: "btn btn-success" %></p>
+				<% end %>
+
+				</div>
+				<% if @campsite.reviews.count > 0 %>
+						<div class="campsite-show-reviews-scroll">
+							<% @campsite.reviews.reverse.each do |review| %>
+								<div class="inner">
+									<br>
+									<p><i><strong>"<%= review.comments %>"</strong></i></p>
+									Campsite: <strong><%= link_to review.campsite.sitename, campsite_path(review.campsite.id)%></strong>
+									<br>Rating: <%= review.rating %> out of 5
+									<br>Submitted by <strong><%= link_to review.user.username, review.user %></strong> on <%= review.created_at.advance(:hours => -5).strftime("%A, %B %e, %l:%m %P EST") %><br>
+								</div>
+							<% end %>
+						</div>
+				<% end %>
+				<% if @campsite.reviews.count == 0 %>
+					<div class="inner">
+						<br>
+						<p>Have you been to <%= @campsite.sitename %>?</p>
+						<p>Help us out and be the first to tell us how it was!</p>
+						<p><%= link_to "Write a Review", new_campsite_review_path(@campsite, :campsite_id => @campsite.id), class: "btn btn-success" %></p>
+					</div>
+				<% end %>
+			</div>
+
+		<div class="col-md-6 right">
+			<br><p><%= link_to_function "Return To Search Results", "history.back()", class: "btn btn-warning" %></p><br>
+						
 			<iframe
 				width="550"
-				height="400"
+				height="450"
 				frameborder="0" style="border:0"
 				src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCJuN7LyRB9OXNIyUlsZUCJRDSqE1jzGQs
 				&q=<%= @campsite.latitude %>, <%= @campsite.longitude %>">

@@ -1,6 +1,7 @@
 <div class="container">
+	<br>
 	<div class="row">
-		<div class="col-md-6 left">	
+		<div class="col-md-6 left light-text">	
 			<h2>Already a member? Sign in</h2>
 
 			<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
@@ -18,7 +19,7 @@
 			<% end %>
 		</div>
 
-		<div class="col-md-6 left">
+		<div class="col-md-6 left light-text">
 			<h2>New around here? Sign up</h2>
 
 			<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
@@ -34,7 +35,7 @@
 			  <%= f.password_field :password_confirmation %></div><br>
 
 			  
-			  	<div class="col-md-3 left"><%= f.submit "Sign up", class: "btn btn-success btn-lg" %></div>
+			<%= f.submit "Sign up", class: "btn btn-success btn-lg" %></div>
 			<% end %>
 
 		</div>

@@ -1,10 +1,10 @@
 <div class="container center">
 	<% if notice %>
-		<p class="alert alert-info"><%= notice %></p>
+		<p class="alert alert-success"><%= notice %></p>
 	<% end %>
 
 	<% if alert %>
-  		<p class="alert alert-info"><%= alert %></p>
+  		<p class="alert alert-success"><%= alert %></p>
   <% end %>
 
   <div class="row">
@@ -21,6 +21,7 @@
 			    <%= select_tag :statequery, options_for_select(us_states_distinct), :class => "form-inline" %>
 			    <%= submit_tag "Search", name: nil, :class => "btn btn-success" %>
 				<% end %>
+				<br>
 			</div>
 			<div class="inner">
 				<h1>Highest rated campsites</h1>
@@ -35,7 +36,7 @@
 			    <tbody>
 					<% @highest_rated_campsites.each do |campsite| %>
 						<tr>
-							<td><%= link_to campsite.sitename, campsite_path(campsite.id) %></td>
+							<td><strong><%= link_to campsite.sitename, campsite_path(campsite.id) %></strong></td>
 							<td><%= campsite.average %></td>
 							<td><%= campsite.reviews.count %></td>
 						</tr>
@@ -49,9 +50,9 @@
 		  	<h1>Recently submitted reviews</h1>
 		  	<br>
 				<% @recent_reviews.each do |review| %>
-					<p><i>"<%= review.comments %>"</i></p>
-					<strong>Campsite:</strong> <%= link_to review.campsite.sitename, campsite_path(review.campsite.id) %>
-					<br><strong>Rating:</strong> <%= review.rating %> out of 5
+					<p><i><strong>"<%= review.comments %>"</strong></i></p>
+					Campsite: <strong><%= link_to review.campsite.sitename, campsite_path(review.campsite.id)%></strong>
+					<br>Rating: <%= review.rating %> out of 5
 					<br>Submitted by <strong><%= link_to review.user.username, review.user %></strong> on <%= review.created_at.advance(:hours => -5).strftime("%A, %B %e, %l:%m %P EST") %><br><br><br>
 				<% end %>
 			</div>
