@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 	def home
 		@campsites = Campsite.all
-		@recent_reviews = Review.find(:all, :order => "id desc", :limit => 5)
+		@recent_reviews = Review.find(:all, :order => "id desc", :limit => 3)
 		@highest_rated_campsites = Campsite.find_by_sql "SELECT *
 														                          FROM (
 														                            SELECT distinct c.id

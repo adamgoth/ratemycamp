@@ -1,5 +1,16 @@
 .navbar-brand {
 	font-weight: bold;
+	color: red;
+	color: #F2FFF2 !important;
+}
+
+.navbar-default {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: #F2FFF2 !important;
 }
 
 .center {
@@ -12,6 +23,7 @@
 
 .inner{
 	background-color: #F2FFF2;
+	opacity: 0.98;
 	border: solid 3px #4cae4c;
     border-radius: 25px;
     padding: 0px 15px 20px 15px;
@@ -27,3 +39,17 @@
 	text-align: center;
 }
 
+body {
+	background-image: url('/rmc_3.jpg');
+}
+
+div > .inner > h1 {
+	font-family: verdana;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: verdana;
+}
+p, div {
+    font-family: verdana;
+}
