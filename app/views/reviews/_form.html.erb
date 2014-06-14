@@ -24,6 +24,6 @@
     <%= f.text_area :comments, cols: 100, rows: 8 %>
   </div><br>
   <div class="actions">
-    <%= submit_tag "Submit Review", name: nil, :class => "btn btn-success" %>
+    <%= submit_tag "Submit Review", name: nil, :class => "btn btn-success" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to_function "Back", "history.back()", class: "btn btn-warning" %>
   </div>
 <% end %>

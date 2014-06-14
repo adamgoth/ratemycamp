@@ -2,8 +2,9 @@
 
   <%= form_tag campsites_path, method: :get do %>
     <%= text_field_tag :namequery, params[:namequery], :class => "search-box" %>
-    <%= submit_tag "Search", name: nil, :class => "btn btn-success" %>
+    <%= submit_tag "Search by name", name: nil, :class => "btn btn-success" %>
     <%= link_to 'Clear', campsites_path, class: "btn btn-danger" %>
+    <%= link_to_function "Back", "history.back()", class: "btn btn-warning" %>
   <% end %>
 
   <br>
