@@ -1,5 +1,15 @@
-<h1>New campsite</h1>
+<% if current_user.try(:admin?) %>
 
-<%= render 'form' %>
+	<h1>New campsite</h1>
 
-<%= link_to 'Back', campsites_path %>
+	<%= render 'form' %>
+
+	<%= link_to 'Back', campsites_path %>
+
+<% else %>
+
+<div class="container center">
+	<p class="light-text">Nothing to see here. Move along.</p>
+</div>
+
+<% end %>

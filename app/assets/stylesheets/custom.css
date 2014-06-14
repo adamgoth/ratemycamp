@@ -58,7 +58,7 @@ body {
 	background-image: url('/rmc_3.jpg');
 }
 
-div > .inner > h1 {
+div > .inner > h1, div > .inner > h2 {
 	font-family: verdana;
 }
 
@@ -70,5 +70,9 @@ p, div {
 }
 
 table > thead > tr > th {
+	text-align: center; 
+}
+
+table > tbody > tr > td {
 	text-align: center; 
 }

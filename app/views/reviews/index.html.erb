@@ -1,29 +1,35 @@
-<h1>Listing reviews</h1>
+<div class="container">
+  <div class="inner">
 
-<table>
-  <thead>
-    <tr>
-      <th>Rating</th>
-      <th>Comments</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+    <h1>Listing reviews</h1>
 
-  <tbody>
-    <% @reviews.each do |review| %>
-      <tr>
-        <td><%= review.rating %></td>
-        <td><%= review.comments %></td>
-        <td><%= link_to 'Show', review %></td>
-        <td><%= link_to 'Edit', edit_review_path(review) %></td>
-        <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <table>
+      <thead>
+        <tr>
+          <th>Rating</th>
+          <th>Comments</th>
+          <th>User</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-<br>
+      <tbody>
+        <% @reviews.each do |review| %>
+          <tr>
+            <td><%= review.rating %></td>
+            <td><%= review.comments %></td>
+            <td><%= link_to review.user.username, review.user %></td>
+            <td><%= link_to 'Show', review %></td>
+            <td><%= link_to 'Edit', edit_review_path(review) %></td>
+            <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<%= link_to 'New Review', new_review_path %>
+    <br>
+
+  </div>
+</div>
