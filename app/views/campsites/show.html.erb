@@ -1,12 +1,4 @@
 <div class="container">
-	<% if notice %>
-		<p class="alert alert-success"><%= notice %></p>
-	<% end %>
-
-	<% if alert %>
-  		<p class="alert alert-success"><%= alert %></p>
-  	<% end %>	 
-
 	<div class="row">
 		<div class="col-md-6 left">
 			<div class="inner">
@@ -32,7 +24,11 @@
 				<% end %>
 
 				<% if @campsite.reviews.count > 0 %>
-				<p><%= link_to "Write a Review", new_campsite_review_path(@campsite, :campsite_id => @campsite.id), class: "btn btn-success" %></p>
+					<% if user_signed_in? %>
+						<p><%= link_to "Write a Review", new_campsite_review_path(@campsite, :campsite_id => @campsite.id), class: "btn btn-success" %></p>
+					<% else %>
+						<p><%= link_to "Write a Review", new_user_session_path, class: "btn btn-success" %></p>
+					<% end %>
 				<% end %>
 
 				</div>
@@ -54,7 +50,11 @@
 						<br>
 						<p>Have you been to <%= @campsite.sitename %>?</p>
 						<p>Help us out and be the first to tell us how it was!</p>
-						<p><%= link_to "Write a Review", new_campsite_review_path(@campsite, :campsite_id => @campsite.id), class: "btn btn-success" %></p>
+						<% if user_signed_in? %>
+							<p><%= link_to "Write a Review", new_campsite_review_path(@campsite, :campsite_id => @campsite.id), class: "btn btn-success" %></p>
+						<% else %>
+							<p><%= link_to "Write a Review", new_user_session_path, class: "btn btn-success" %></p>
+						<% end %>
 					</div>
 				<% end %>
 			</div>

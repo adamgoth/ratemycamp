@@ -54,6 +54,12 @@
 	margin-bottom: 110px;
 }
 
+.reviews-index-scroll {
+	height:700px;
+	overflow: scroll;
+	margin-bottom: 110px;
+}
+
 body {
 	background-image: url('/rmc_3.jpg');
 }

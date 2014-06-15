@@ -28,7 +28,7 @@ class ReviewsController < ApplicationController
     @campsite = Campsite.find(params[:campsite_id])
     @review = @campsite.reviews.build(review_params)
     if @review.save
-      redirect_to campsite_path(@campsite), notice: 'Review was successfully created.' , class: "alert-info"
+      redirect_to campsite_path(@campsite), notice: 'Thank you for submitting a review!' , class: "alert-info"
     else
       render action: 'new'
     end

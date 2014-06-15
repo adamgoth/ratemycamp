@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RateMyCamp.com</title>
+  <title>RateYourCamp.com</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 	<%= render 'layouts/header' %>
+
+	<% if notice %>
+		<div class="container center">
+			<p class="alert alert-success"><%= notice %></p>
+		</div>
+	<% end %>
+
+	<% if alert %>
+		<div class="container center">
+  		<p class="alert alert-success"><%= alert %></p>
+  	</div>
+  <% end %>	 
 
 	<%= yield %>
 

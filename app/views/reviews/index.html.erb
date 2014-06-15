@@ -1,35 +1,15 @@
-<div class="container">
-  <div class="inner">
+<div class="container center" style="width: 50%;">
 
-    <h1>Listing reviews</h1>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Rating</th>
-          <th>Comments</th>
-          <th>User</th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @reviews.each do |review| %>
-          <tr>
-            <td><%= review.rating %></td>
-            <td><%= review.comments %></td>
-            <td><%= link_to review.user.username, review.user %></td>
-            <td><%= link_to 'Show', review %></td>
-            <td><%= link_to 'Edit', edit_review_path(review) %></td>
-            <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-    <br>
-
+  <div class="reviews-index-scroll">
+    <% @reviews.reverse.each do |review| %>
+      <div class="inner">
+        <br>
+        <p><i><strong>"<%= review.comments %>"</strong></i></p>
+        Campsite: <strong><%= link_to review.campsite.sitename, campsite_path(review.campsite.id)%></strong>
+        <br>Rating: <%= review.rating %> out of 5
+        <br>Submitted by <strong><%= link_to review.user.username, review.user %></strong> on <%= review.created_at.advance(:hours => -5).strftime("%A, %B %e, %l:%m %P EST") %><br>
+      </div>
+    <% end %>
   </div>
+  <br>
 </div>
