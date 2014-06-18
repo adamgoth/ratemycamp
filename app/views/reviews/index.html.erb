@@ -8,6 +8,9 @@
         Campsite: <strong><%= link_to review.campsite.sitename, campsite_path(review.campsite.id)%></strong>
         <br>Rating: <%= review.rating %> out of 5
         <br>Submitted by <strong><%= link_to review.user.username, review.user %></strong> on <%= review.created_at.advance(:hours => -5).strftime("%A, %B %e, %l:%m %P EST") %><br>
+        <br><% if current_user.try(:admin?) %>
+              <%= link_to 'Delete Review', review_path(review), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %>
+            <% end %>
       </div>
     <% end %>
   </div>
